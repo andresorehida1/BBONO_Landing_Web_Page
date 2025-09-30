@@ -1,0 +1,485 @@
+/* =========================
+   RESET / BASE / FUENTE
+   ========================= */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Berthold Block";
+  src: url("../assets/fonts/Berthold-Block-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Handelson One";
+  src: url("../assets/handelson-one.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body, #root {
+  height: 100%;
+  min-height: 100%;
+  margin: 0;
+  font-family: "Berthold Block", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: #F7EFE8;
+  overflow-x: hidden;
+}
+
+:root {
+  --c-bg:     #F7EFE8;
+  --c-maroon: #681923;
+  --c-orange: #FF7A00;
+  --c-white:  #fff;
+  --c-black:  #000;
+
+  --fs-title: clamp(1.6rem, 3vw, 3rem);
+  --fs-body:  clamp(1.3rem, 2vw, 2rem);
+  --fs-btn:   clamp(1rem, 1.8vw, 1.35rem);
+
+  --section-height: clamp(560px, 84dvh, 950px);
+}
+
+.home, .hero, .container--bleed {
+  width: 100%;
+}
+
+.container--bleed {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* =========================
+   SECCIONES 2, 3, 4, 5 UNIFICADAS
+   ========================= */
+.section-two,
+.section-three,
+.section-four,
+.section-five {
+  height: var(--section-height);
+  display: grid;
+  place-items: center;
+  padding-block: clamp(16px, 2vh, 40px);
+}
+
+/* =========================
+   SECCIÓN 2 (LA NOSTRA B-BOX)
+   ========================= */
+.section-two {
+  background: var(--c-maroon);
+  color: var(--c-white);
+}
+
+.s2-wrap {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding-inline: clamp(12px, 5vw, 80px);
+  display: grid;
+  grid-template-rows: auto 1fr;
+  align-items: center;
+  justify-items: center;
+  box-sizing: border-box;
+}
+
+.s2-header {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+}
+
+.s2-title {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 1.1;
+  white-space: normal;
+  text-wrap: balance;
+  max-width: 95%;
+}
+
+/* Desktop grande */
+@media (min-width: 1280px) {
+  .s2-title { max-width: 110ch; }
+}
+
+/* Medianas */
+@media (max-width: 980px) {
+  .s2-title {
+    max-width: 32ch;
+    font-size: clamp(1.8rem, 3.2vw, 3rem);
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .s2-title {
+    max-width: 22ch;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+  }
+}
+
+.s2-band {
+  width: 60%;
+  height: clamp(8px, .9vw, 12px);
+  background: var(--c-orange);
+  border-radius: 999px;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.08) inset;
+}
+
+.s2-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(8px, 1vw, 20px);
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 980px) {
+  .s2-grid {
+    grid-template-columns: 1fr;
+    row-gap: 1.5rem;
+  }
+}
+
+.s2-polaroid {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: clamp(300px, 35vw, 500px);
+  width: 100%;
+  aspect-ratio: 3/4;
+}
+
+.s2-polaroid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../assets/duo1-bg.png") center/contain no-repeat;
+}
+
+.s2-photo {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  z-index: 1;
+  transform: translate(-8%, -4%);
+}
+
+.s2-textcol {
+  display: grid;
+  gap: clamp(12px, 2vw, 20px);
+  justify-items: center;
+  text-align: center;
+  max-width: 60ch;
+}
+
+.s2-text {
+  margin: 0;
+  font-size: clamp(1.3rem, 1.8vw, 2.3rem);
+  line-height: 1.35;
+}
+
+.btn--primary {
+  background: var(--c-orange);
+  color: var(--c-white);
+  font-size: var(--fs-btn);
+  padding: clamp(.9rem, 1.3vw, 1.15rem) clamp(1.3rem, 2.2vw, 2rem);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(255,122,0,.28);
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+.btn--primary:hover { transform: translateY(-1px); }
+.btn--primary:active { transform: translateY(0); opacity: .92; }
+
+/* =========================
+   SECCIÓN 3 (SCOPRI BBONO)
+   ========================= */
+.section-three {
+  background: #FAF3EB;
+  color: var(--c-black);
+}
+
+.s3-wrap {
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding-inline: clamp(12px, 5vw, 80px);
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.s3-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(8px, 1vw, 20px);
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 980px) {
+  .s3-grid {
+    grid-template-columns: 1fr;
+    row-gap: 1.5rem;
+  }
+}
+
+.s3-textcol {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  text-align: center;
+  max-width: 60ch;
+}
+
+.s3-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--c-maroon);
+}
+
+.s3-watermark-wrapper {
+  position: relative;
+  padding: clamp(14px, 2.5vw, 28px);
+  background: url("../assets/bbono-big.png") center/contain no-repeat;
+}
+
+.s3-watermark-wrapper p {
+  font-size: clamp(1.1rem, 2vw, 1.8rem);
+  line-height: 1.4;
+  margin: 0.5rem 0;
+  color: var(--c-maroon);
+}
+
+.s3-polaroid {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: clamp(300px, 35vw, 500px);
+  width: 100%;
+  aspect-ratio: 3/4;
+}
+
+.s3-polaroid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../assets/duo2-bg.png") center/contain no-repeat;
+}
+
+.s3-photo {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  z-index: 1;
+  transform: translate(-6%, -2%);
+}
+
+/* =========================
+   SECCIÓN 4 (REDISEÑADA CON TEXTO)
+   ========================= */
+.section-four {
+  position: relative;
+  background: #FAF3EB;
+  height: var(--section-height);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.section-four::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../assets/bbono-small.png") repeat center;
+  background-size: clamp(800px, 10vw, 1500px);
+  opacity: 0.2;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.s4-wrap {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  padding-inline: clamp(12px, 5vw, 60px);
+  font-family: "DM Sans", sans-serif; /* 🔥 Base de toda la sección */
+}
+
+.s4-logo img {
+  max-width: clamp(180px, 20vw, 280px);
+  height: auto;
+}
+
+.s4-prices {
+  display: flex;
+  gap: clamp(16px, 4vw, 40px);
+  justify-content: center;
+  align-items: stretch;
+}
+
+.s4-price-card {
+  display: grid;
+  gap: 0.25rem;
+  justify-items: center;
+  text-align: center;
+  padding-inline: clamp(8px, 2vw, 16px);
+}
+
+.s4-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
+  font-weight: 600;
+  color: var(--c-maroon);
+  margin: 0 0 0.3rem;
+  text-transform: uppercase;
+}
+
+.s4-price {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 800;
+  color: var(--c-maroon); /* 🔥 ahora vinotinto liso */
+  margin: 0;
+  line-height: 1;
+}
+
+.s4-label {
+  font-family: "Handelson One", cursive;
+  font-size: clamp(2rem, 3.2vw, 3rem); /* grande */
+  color: var(--c-maroon);
+  margin: 0;
+}
+
+.s4-divider {
+  width: 2px;
+  background: var(--c-maroon);
+  opacity: 0.5;
+  margin-inline: clamp(8px, 2vw, 16px);
+}
+
+.s4-text {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: center;
+  max-width: 80ch;
+  color: var(--c-maroon);
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  line-height: 1.4;
+}
+
+.s4-veg {
+  font-weight: bold;
+  color: var(--c-maroon);
+}
+
+.btn--sec4 {
+  margin-top: 0.5rem;
+  background: var(--c-maroon);
+  color: var(--c-white);
+  font-size: var(--fs-btn);
+  padding: clamp(.9rem, 1.3vw, 1.15rem) clamp(1.3rem, 2.2vw, 2rem);
+  border-radius: 14px;
+  box-shadow: 0 8px 20px rgba(104, 25, 35, 0.28);
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, opacity 120ms ease;
+}
+.btn--sec4:hover { transform: translateY(-1px); }
+.btn--sec4:active { transform: translateY(0); opacity: .92; }
+
+/* =========================
+   SECCIÓN 5 (GALERÍA DE FOTOS)
+   ========================= */
+.section-five {
+  background: var(--c-maroon);
+  color: var(--c-white);
+  height: var(--section-height);
+  display: flex;
+  flex-direction: column; /* 👈 galería arriba, texto debajo */
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  padding-block: clamp(16px, 2vh, 40px);
+}
+
+.s5-wrap {
+  display: flex;
+  flex-direction: column; /* mantiene orden vertical */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  gap: 0; /* 👈 sin separación extra */
+}
+
+.s5-gallery {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+  width: 100%;
+  overflow-x: auto;   /* 👈 solo scroll horizontal */
+  overflow-y: hidden; /* ❌ sin scroll vertical */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.s5-gallery::-webkit-scrollbar { display: none; }
+
+.s5-img {
+  border-radius: 12px;
+  flex: 0 0 auto;
+  object-fit: cover;
+  width: clamp(280px, 30vw, 420px);
+  height: auto; /* mantiene proporción */
+  transition: transform 0.3s ease;
+}
+.s5-img:hover { transform: scale(1.05); }
+
+.s5-textblock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0.5rem; /* 👈 pegado a la galería */
+}
+
+.s5-title {
+  font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0;
+  color: var(--c-white);
+}
+
+.s5-underline {
+  width: clamp(200px, 30vw, 600px);
+  height: clamp(6px, 0.5vw, 8px);
+  background: var(--c-orange);
+  border-radius: 999px;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.1) inset;
+}

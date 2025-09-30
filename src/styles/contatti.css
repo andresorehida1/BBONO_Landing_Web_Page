@@ -1,0 +1,146 @@
+/* ===== Variables ===== */
+:root {
+  --contact-text: #681923;   /* color exacto del texto */
+  --page-bg: #ffffff;        /* fondo blanco (como pediste) */
+}
+
+/* Evita overflow horizontal accidental */
+html, body { overflow-x: hidden; }
+
+/* ===== Página Contatti ===== */
+.contatti-page {
+  --page-padding-x: clamp(1rem, 3vw, 3rem);
+  --page-padding-y: clamp(2rem, 4vw, 4rem);
+
+  min-height: 100dvh;                 /* altura “pantalla” en desktop */
+  width: 100%;
+  padding: var(--page-padding-y) var(--page-padding-x);
+  color: var(--contact-text);
+  font-family: "Berthold Block", "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--page-bg);
+
+  /* Evita que el contenedor se “estire” y deje huecos si es flex ancestor */
+  align-content: start;
+  justify-content: start;
+
+  /* Seguridad extra contra desbordes */
+  overflow-x: clip;
+}
+
+/* En anchos estrechos NO fuerces 100vh: deja que la altura la marque el contenido */
+@media (max-width: 1024px) {
+  .contatti-page { min-height: auto; }
+}
+
+/* Quita márgenes colapsados al final que generan “cola” */
+.contatti-page > *:last-child { margin-bottom: 0 !important; }
+
+/* Garantiza que nada se salga del ancho */
+.contatti-page img,
+.contatti-page iframe {
+  max-width: 100%;
+  display: block;
+}
+
+/* ===== Botón Google Maps ===== */
+.gmaps-cta {
+  display: flex;
+  justify-content: center;
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+.gmaps-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1rem;
+  background: #ffffff;           /* fondo blanco */
+  color: #000000;                /* texto negro (font normal) */
+  text-decoration: none;
+  border: 2px solid #e5e5e5;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.2s;
+
+  /* fuente “normal” para el botón */
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+}
+
+.gmaps-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  border-color: #dcdcdc;
+}
+
+.gmaps-logo { display: grid; place-items: center; }
+.gmaps-text { line-height: 1; white-space: nowrap; }
+
+/* ===== Mapa embebido ===== */
+.map-wrap {
+  display: grid;
+  place-items: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.map-frame {
+  width: min(1200px, 100%);
+  aspect-ratio: 16 / 9;          /* responsivo */
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+  border: 2px solid rgba(0,0,0,0.06);
+}
+
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ===== Sección de contacto ===== */
+.contact-info {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  margin: 0 0 clamp(1rem, 2vw, 1.5rem) 0;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.contact-block { font-style: normal; }  /* address sin itálica */
+
+.contact-line {
+  font-size: clamp(1.2rem, 1.6vw, 1.6rem);
+  line-height: 1.5;
+  margin: 0.15rem 0;
+}
+
+.contact-address { margin-bottom: clamp(0.5rem, 1vw, 0.75rem); }
+
+.contact-link {
+  color: inherit;                      /* usa #681923 */
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-link:hover { text-decoration-thickness: 2px; }
+
+/* ===== Ajustes anti “cola” y responsive ===== */
+/* Reduce ligeramente el gap para ayudar a que no sobre espacio en móviles */
+.map-wrap { margin-bottom: 1rem; }
+
+.contact-info .contact-block { margin-bottom: 0; }
+.contact-info .contact-line:last-child { margin-bottom: 0; }
+
+@media (max-width: 520px) {
+  .gmaps-btn { padding: 0.6rem 0.85rem; }
+  .map-frame { border-radius: 12px; }
+  /* Menos padding inferior en pantallas muy estrechas */
+  .contatti-page { padding-bottom: 1rem; }
+}
+

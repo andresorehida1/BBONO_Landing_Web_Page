@@ -1,0 +1,227 @@
+/* ====== FOOTER (compacto, 3 columnas L/C/R) ====== */
+:root{
+  --header-h: 150px;                         /* ajusta si tu header cambió */
+  --footer-h: calc(var(--header-h) * 2);     /* doble del header */
+  --footer-bg: #FAF3EB;                      /* mismo fondo que el header */
+  --footer-fg: #681923;                      /* mismo color de texto */
+  --footer-max: 1200px;                      /* ancho máx. del contenido */
+}
+
+/* Contenedor principal */
+.footer-glass{
+  background: var(--footer-bg);
+  color: var(--footer-fg);
+  min-height: var(--footer-h);
+  padding: 28px 20px 14px;                   /* compacto */
+  border-top: 1px solid rgba(0,0,0,0.08);
+  font-family: "Berthold Block","Montserrat",system-ui,sans-serif;
+  line-height: 1.25;                          /* ⬅️ interlineado compacto */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* GRID de 3 columnas con separaciones uniformes */
+.footer-grid{
+  width: 100%;
+  max-width: var(--footer-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;        /* 3 columnas iguales */
+  align-items: start;
+  column-gap: 24px;                           /* separación lateral */
+  row-gap: 10px;                               /* separación vertical mínima */
+  text-align: center;                          /* base centrada */
+}
+
+/* Columna izquierda */
+.footer-col:first-child{
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Columna centro */
+.footer-col:nth-child(2){
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Columna derecha */
+.footer-col:last-child{
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Marca */
+.footer-col.footer-brand .brand-wrap{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;                                    /* compacto */
+}
+.footer-logo{
+  height: 60px;                                 /* un poco más compacto */
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+.footer-brand-text{
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin: 0;
+}
+.footer-muted{
+  font-size: .92rem;
+  margin: 4px 0 0;                              /* compacto */
+  opacity: .9;
+  max-width: 320px;
+}
+
+/* Redes sociales */
+.socials{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;                                     /* ⬅️ más juntas */
+  margin-top: 6px;
+}
+.icon-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  color: var(--footer-fg);
+  text-decoration: none;
+}
+.icon-btn svg{
+  fill: var(--footer-fg);
+  transition: opacity .2s ease, transform .15s ease;
+}
+.icon-btn:hover svg{
+  opacity: .75;
+  transform: translateY(-1px);
+}
+
+/* Títulos y listas */
+.footer-title{
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0 0 4px;                              /* compacto */
+}
+.footer-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.footer-list li{
+  margin: 2px 0;                                /* ⬅️ renglones más juntos */
+  line-height: 1.25;
+}
+.footer-list a{
+  color: var(--footer-fg);
+  text-decoration: underline;
+}
+
+/* Links de navegación del pie */
+.footer-links{
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;                                     /* compacto */
+  margin-top: 2px;
+}
+.footer-link{
+  color: var(--footer-fg);
+  text-decoration: none;
+  font-weight: 600;
+  line-height: 1.25;
+}
+.footer-link:hover{ text-decoration: underline; }
+
+/* Franja legal inferior */
+.footer-legal{
+  width: 100%;
+  max-width: var(--footer-max);
+  margin: 18px auto 0;
+  padding-top: 8px;                              /* compacto */
+  border-top: 1px solid rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .85rem;
+  line-height: 1.2;
+}
+.legal-actions{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;                                      /* compacto */
+}
+.legal-link{
+  color: var(--footer-fg);
+  text-decoration: underline;
+  font-size: .85rem;
+}
+.to-top{
+  background: none;
+  border: 1px solid var(--footer-fg);
+  border-radius: 50%;
+  width: 28px; height: 28px;
+  font-size: 1rem; line-height: 1;
+  cursor: pointer;
+  color: var(--footer-fg);
+  transition: background .2s ease, color .2s ease;
+}
+.to-top:hover{
+  background: var(--footer-fg);
+  color: var(--footer-bg);
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 960px){
+  .footer-grid{ grid-template-columns: 1fr 1fr; }
+  /* Alineación útil en 2 col: izq y der a los lados, la central se centra */
+  .footer-col:first-child{ text-align: left; }
+  .footer-col:nth-child(2){ text-align: right; align-items: flex-end; }
+  .footer-col:last-child{ grid-column: 1 / -1; text-align: center; align-items: center; }
+}
+@media (max-width: 560px){
+  .footer-grid{ grid-template-columns: 1fr; text-align: center; }
+  .footer-col{ align-items: center !important; text-align: center !important; }
+  .footer-logo{ height: 56px; }
+  .footer-legal{
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+}
+
+.delivery-footer {
+  margin-top: 0.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* por defecto: alineado a la izquierda */
+}
+
+.delivery-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #681923;
+  margin-bottom: 0.5rem;
+}
+
+.glovo-footer-logo {
+  height: 32px;
+  width: auto;
+}
+
+@media (max-width: 760px) {
+  .delivery-footer {
+    align-items: center; /* centra en pantallas pequeñas */
+    text-align: center;
+  }
+}
+

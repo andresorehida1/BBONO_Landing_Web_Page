@@ -1,0 +1,79 @@
+/* ========================
+   CAROUSEL – imagen completa + dots superpuestos
+   ======================== */
+
+/* El wrapper toma la altura de su contenido (la imagen) y sirve de referencia a los dots */
+.c-wrap {
+  position: relative;      /* referencia para c-dots */
+  width: 100%;
+  overflow: hidden;        /* anti desbordes horizontales */
+  margin: 0;
+  padding: 0;
+  background: transparent; /* sin bandas negras */
+}
+
+/* Scroller con snapping; altura definida por la imagen (auto) */
+.c-scroller {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-snap-stop: always;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  touch-action: pan-y;
+}
+.c-scroller::-webkit-scrollbar { display: none; }
+
+.c-item {
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: start;
+}
+
+/* IMAGEN COMPLETA, SIN RECORTE:
+   - Llena el ancho del dispositivo
+   - Alto automático conservando proporción
+   - El contenedor adopta esa altura
+*/
+.c-img {
+  width: 100vw;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+}
+
+/* Dots SUPERPUESTOS sobre la imagen (dentro del mismo alto) */
+.c-dots {
+  position: absolute;
+  left: 50%;
+  bottom: max(14px, env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+  pointer-events: none; /* el contenedor no intercepta clicks */
+}
+
+.c-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  background: rgba(0,0,0,.38); /* suficiente contraste sobre la imagen */
+  transition: background .2s ease;
+  pointer-events: auto; /* los botones sí reciben clicks */
+}
+.c-dot.is-active { background: #FF7A00; }
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .c-scroller { scroll-behavior: auto; }
+}
+
+
